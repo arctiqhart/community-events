@@ -1,7 +1,7 @@
 output "address" {
-  value = "${aws_instance.web.public_ip}"
+  value = "${google_compute_address.web.ext_ip.address}"
 }
 
 output "ssh" {
-  value = "ssh ${aws_instance.web.tags.sshUser}@${aws_instance.web.public_ip}"
+  value = "ssh ${google_compute_instance.web.tags.sshUser}@${aws_instance.web.ext_ip.address}"
 }

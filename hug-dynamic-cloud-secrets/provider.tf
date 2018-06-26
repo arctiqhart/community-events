@@ -1,14 +1,13 @@
-provider "vault" {}
+# provider "vault" {}
 
-data "vault_aws_access_credentials" "creds" {
-  backend = "aws"
-  role    = "provisioner"
-}
+# data "vault_generic_secret" "creds" {
+#   path = "creds/provisioner"
+#   backend = "gcp"
+#   role    = "provisioner"
+# }
 
-provider "aws" {
-  access_key = "${data.vault_aws_access_credentials.creds.access_key}"
-  secret_key = "${data.vault_aws_access_credentials.creds.secret_key}"
-
-  #   region     = "${data.external.region.result["region"]}"
-  region = "${var.AWS_REGION}"
+provider "google" {
+  credentials = "${file("credentials.json")}"
+  project     = "${var.project}"
+  region      = "${var.GCP_REGION}"
 }

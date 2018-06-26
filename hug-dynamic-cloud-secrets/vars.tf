@@ -1,19 +1,21 @@
-variable "AWS_REGION" {
-  default = "us-east-1"
+variable "GCP_REGION" {
+  default = "us-east1"
 }
-variable "AMIS" {
+
+variable "IMAGE" {
   type = "map"
+
   default = {
-    us-east-1 = "ami-82cfb894"
-    us-west-2 = "ami-e9503589"
-    eu-west-1 = "ami-051b1563"
+    us-east1 = "centos-7"
+
+    # us-west-2 = "ami-e9503589"
+    # eu-west-1 = "ami-051b1563"
   }
 }
+
 variable "root_volume_size" {
   description = "How big to make the disk in GB"
-  default = 12
+  default     = 10
 }
-variable "volume_delete_on_termination" {
-  description = "Delete the disk volume on VM termination"
-  default = true
-}
+
+project = "HASHI-VAULT"
