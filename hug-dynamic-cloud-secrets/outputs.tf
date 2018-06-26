@@ -1,7 +1,7 @@
 output "address" {
-  value = "${google_compute_address.web.ext_ip.address}"
+  value = "${google_compute_instance.web.network_interface.0.access_config.0.assigned_nat_ip}"
 }
 
 output "ssh" {
-  value = "ssh ${google_compute_instance.web.tags.sshUser}@${aws_instance.web.ext_ip.address}"
+  value = "ssh ${google_compute_instance.web.labels.sshuser}@${google_compute_instance.web.network_interface.0.access_config.0.assigned_nat_ip}"
 }
